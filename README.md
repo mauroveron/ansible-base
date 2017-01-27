@@ -1,6 +1,9 @@
 Ansible Base
 ============
 
+[![Build
+Status](https://travis-ci.org/mauroveron/ansible-base.svg?branch=master)](https://travis-ci.org/mauroveron/ansible-base)
+
 Base software and configuration for Debian systems.
 
 Requirements
