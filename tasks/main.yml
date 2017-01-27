@@ -1,0 +1,34 @@
+---
+- name: update package cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 7200
+
+- name: install base utilities
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+  with_items:
+    - ntp
+    - git-core
+    - tmux
+    - htop
+    - strace
+    - vim-nox
+    - iotop
+    - tcpdump
+    - curl
+    - zsh
+
+- name: check current timezone
+  shell: cat /etc/timezone
+  register: get_timezone
+
+- name: set timezone variables
+  shell: echo "{{ timezone }}" > /etc/timezone
+  when: '"{{ timezone }}" not in get_timezone.stdout'
+  notify: update timezone
+
+- name: regenerate locales
+  shell: "locale-gen {{ locales }}"
+  with_items: "{{ locales }}"
