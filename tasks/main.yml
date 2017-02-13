@@ -19,6 +19,7 @@
     - tcpdump
     - curl
     - zsh
+    - dnsutils
 
 - name: check current timezone
   shell: cat /etc/timezone
