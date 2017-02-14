@@ -2,3 +2,4 @@
 timezone: Pacific/Auckland
 locales:
   - en_NZ.UTF-8
+debian_backports: false

@@ -1,4 +1,11 @@
 ---
+- name: install debian backports
+  apt_repository:
+    repo: 
+    filename: "{{ ansible_distribution_release }}_backports"
+    state: present
+  when: debian_backports
+
 - name: update package cache
   apt:
     update_cache: yes
