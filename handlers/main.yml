@@ -2,3 +2,6 @@
 # handlers file for ansible-base
 - name: update timezone
   shell: dpkg-reconfigure --frontend noninteractive tzdata
+
+- name: reconfigure locales
+  shell: dpkg-reconfigure --frontend noninteractive locales

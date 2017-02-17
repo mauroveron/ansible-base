@@ -1,7 +1,7 @@
 ---
 - name: install debian backports
   apt_repository:
-    repo: 
+    repo:
     filename: "{{ ansible_distribution_release }}_backports"
     state: present
   when: debian_backports
@@ -37,6 +37,18 @@
   when: '"{{ timezone }}" not in get_timezone.stdout'
   notify: update timezone
 
-- name: regenerate locales
-  shell: "locale-gen {{ locales }}"
+- name: configure locales to generate
+  lineinfile:
+    dest: /etc/locale.gen
+    regexp: '^# {{item}}'
+    line: '{{item}}'
+    state: present
   with_items: "{{ locales }}"
+  notify: reconfigure locales
+
+- name: set default locale
+  copy:
+    dest: /etc/default/locale
+    content: "LANG={{default_locale}}"
+  notify: reconfigure locales
+

@@ -15,7 +15,10 @@ Role Variables
 --------------
 
 - `timezone`: The timezone
-- `locale`: Locale string (e.g.: `en_NZ`)
+- `locales`: Locales to install. These are used to generate `/etc/locale.gen` so
+  format must be compatible (e.g.: `en_NZ.UTF-8 UTF-8`).
+- `default_locale`: Default locale for the system (e.g.: `en_NZ.UTF-8`)
+- `debian_backports`: Whether or not to install backports repo
 
 Dependencies
 ------------
